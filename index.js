@@ -101,7 +101,7 @@ module.exports = function(client, options) {
       this.aliveMessage = (options && options.aliveMessage) || "";
       this.aliveMessageTime = parseInt((options && options.aliveMessageTime) || 600000);
       this.requesterName = Boolean((options && options.requesterName) || false);
-      this.inlineEmbeds = Boolean((options && options.inlineEmbeds) || false);
+      zz
       this.maxWait = parseInt((options && options.maxWait) || 15000);
       this.queues = {};
       this.loops = {};
@@ -1000,37 +1000,15 @@ module.exports = function(client, options) {
     let command = suffix.trim();
     if (!suffix) {
       if (msg.channel.permissionsFor(msg.guild.me).has('EMBED_LINKS')) {
-        const embed = new Discord.RichEmbed();
-        embed.setAuthor("Commands", msg.author.displayAvatarURL);
-        embed.setDescription(`Use \`${musicbot.botPrefix}${musicbot.helpCmd} command name\` for help on usage.`);
-        // embed.addField(musicbot.helpCmd, musicbot.helpHelp);
+        
         const newCmds = Array.from(musicbot.commands);
         for (var i = 0; i < newCmds.length; i++) {
           let thisCmd = newCmds[i][1];
           if (!thisCmd.disabled) {
-            embed.addField(thisCmd.name, thisCmd.help);
+            
           };
         };
-        embed.setColor(musicbot.embedColor);
-        setTimeout(() => {
-          if (musicbot.messageHelp) {
-            let sent = false;
-            msg.author.send({
-              embed
-            }).then(() => {
-              sent = true;
-            });
-            setTimeout(() => {
-              if (!sent) return msg.channel.send({
-                embed
-              });
-            }, 1200);
-          } else {
-            return msg.channel.send({
-              embed
-            });
-          };
-        }, 1500);
+        
       } else {
         var cmdmsg = `= Music Commands =\nUse ${musicbot.botPrefix}${musicbot.helpCmd} [command] for help on a command.\n`;
         const newCmds = Array.from(musicbot.commands);
