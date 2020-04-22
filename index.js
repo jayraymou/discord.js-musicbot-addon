@@ -554,7 +554,7 @@ try {
 
           if (!ignore) {
             if (msg.channel.permissionsFor(msg.guild.me).has('EMBED_LINKS')) {
-              const embed = new Discord.RichEmbed();
+              const embed = new Discord.MessageEmbed();
               try {
                 embed.setAuthor('Adding To Queue', client.user.avatarURL());
                 var songTitle = res.title.replace(/\\/g, '\\\\')
@@ -604,7 +604,7 @@ try {
       if (!suffix) {
         if (msg.channel.permissionsFor(msg.guild.me)
           .has('EMBED_LINKS')) {
-          const embed = new Discord.RichEmbed();
+          const embed = new Discord.MessageEmbed();
           embed.setAuthor("Commands", client.user.avatarURL());
           embed.setDescription(`Use \`${prefix}${musicbot.help.name} command name\` for help on usage. Anyone with a role named \`${musicbot.djRole}\` can use any command.`);
           // embed.addField(musicbot.helpCmd, musicbot.helpHelp);
@@ -670,7 +670,7 @@ try {
       } else if (musicbot.commands.has(command) || musicbot.aliases.has(command)) {
         if (msg.channel.permissionsFor(msg.guild.me)
           .has('EMBED_LINKS')) {
-          const embed = new Discord.RichEmbed();
+          const embed = new Discord.MessageEmbed();
           command = musicbot.commands.get(command) || musicbot.aliases.get(command);
           if (command.exclude) return msg.channel.send(musicbot.note('fail', `${suffix} is not a valid command!`));
           embed.setAuthor(command.name, msg.client.user.avatarURL());
@@ -778,7 +778,7 @@ try {
 
       if (msg.channel.permissionsFor(msg.guild.me)
         .has('EMBED_LINKS')) {
-        const embed = new Discord.RichEmbed();
+        const embed = new Discord.MessageEmbed();
         try {
           embed.setAuthor('Now Playing', client.user.avatarURL());
           var songTitle = queue.last.title.replace(/\\/g, '\\\\')
@@ -849,7 +849,7 @@ try {
       if (suffix) {
         let video = queue.songs.find(s => s.position == parseInt(suffix) - 1);
         if (!video) return msg.channel.send(musicbot.note("fail", "Couldn't find that video."));
-        const embed = new Discord.RichEmbed()
+        const embed = new Discord.MessageEmbed()
         .setAuthor('Queued Song', client.user.avatarURL())
         .setColor(musicbot.embedColor)
         .addField(video.channelTitle, `[${video.title.replace(/\\/g, '\\\\').replace(/\`/g, '\\`').replace(/\*/g, '\\*').replace(/_/g, '\\_').replace(/~/g, '\\~').replace(/`/g, '\\`')}](${video.url})`, musicbot.inlineEmbeds)
@@ -873,7 +873,7 @@ try {
             if (i !== undefined) pages.push(i)
           });
 
-          const embed = new Discord.RichEmbed();
+          const embed = new Discord.MessageEmbed();
           embed.setAuthor('Queued Songs', client.user.avatarURL());
           embed.setColor(musicbot.embedColor);
           embed.setFooter(`Page ${page} of ${pages.length}`);
@@ -903,7 +903,7 @@ try {
         } else {
           try {
             var newSongs = musicbot.queues.get(msg.guild.id).songs.map((video, index) => (`**${video.position + 1}:** __${video.title.replace(/\\/g, '\\\\').replace(/\`/g, '\\`').replace(/\*/g, '\\*').replace(/_/g, '\\_').replace(/~/g, '\\~').replace(/`/g, '\\`')}__`)).join('\n\n');
-            const embed = new Discord.RichEmbed();
+            const embed = new Discord.MessageEmbed();
             embed.setAuthor('Queued Songs', client.user.avatarURL());
             embed.setColor(musicbot.embedColor);
             embed.setDescription(newSongs);
@@ -939,7 +939,7 @@ try {
 
               const startTheFun = async (videos, max) => {
                 if (msg.channel.permissionsFor(msg.guild.me).has('EMBED_LINKS')) {
-                  const embed = new Discord.RichEmbed();
+                  const embed = new Discord.MessageEmbed();
                   embed.setTitle(`Choose Your Video`);
                   embed.setColor(musicbot.embedColor);
                   var index = 0;
@@ -1059,7 +1059,7 @@ try {
 
                         videos[song_number].requester = msg.author.id;
                         videos[song_number].position = queue.songs.length ? queue.songs.length : 0;
-                        var embed = new Discord.RichEmbed();
+                        var embed = new Discord.MessageEmbed();
                         embed.setAuthor('Adding To Queue', client.user.avatarURL());
                         var songTitle = videos[song_number].title.replace(/\\/g, '\\\\')
                         .replace(/\`/g, '\\`')
@@ -1199,7 +1199,7 @@ try {
 
                         videos[song_number].requester = msg.author.id;
                         videos[song_number].position = queue.songs.length ? queue.songs.length : 0;
-                        var embed = new Discord.RichEmbed();
+                        var embed = new Discord.MessageEmbed();
                         embed.setAuthor('Adding To Queue', client.user.avatarURL());
                         var songTitle = videos[song_number].title.replace(/\\/g, '\\\\')
                         .replace(/\`/g, '\\`')
@@ -1454,7 +1454,7 @@ try {
           if (musicbot.messageNewSong == true && queue.last && queue.loop !== "song") {
             let req = client.users.cache.get(video.requester);
             if (msg.channel.permissionsFor(msg.guild.me).has('EMBED_LINKS')) {
-              const embed = new Discord.RichEmbed()
+              const embed = new Discord.MessageEmbed()
               .setTitle("Now Playing", `${req !== null ? req.displayAvatarURL() : null}`)
               .setThumbnail(`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`)
               .setDescription(`[${video.title.replace(/\\/g, '\\\\').replace(/\`/g, '\\`').replace(/\*/g, '\\*').replace(/_/g, '\\_').replace(/~/g, '\\~').replace(/`/g, '\\`')}](${video.url}) by [${video.channelTitle}](${video.channelURL})`)
