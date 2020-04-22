@@ -477,7 +477,7 @@ try {
     });
 
     musicbot.playFunction = (msg, suffix, args, ignore) => {
-      if (msg.member.voice.channel === undefined) return msg.channel.send(musicbot.note('fail', `You're not in a voice channel.`));
+      if (!msg.member.voice.channel) return msg.channel.send(musicbot.note('fail', `You're not in a voice channel.`));
       if (!suffix) return msg.channel.send(musicbot.note('fail', 'No video specified!'));
       let q = musicbot.getQueue(msg.guild.id);
 
